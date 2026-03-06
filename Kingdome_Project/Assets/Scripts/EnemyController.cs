@@ -14,10 +14,10 @@ public class EnemyController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         SetAnimation();
-        if (Vector2.Distance(transform.position, points[i].position) < 0.25f)
+        if (Mathf.Abs(transform.position.x - points[i].position.x) < 0.1f)
         {
             i++;
             if (i == points.Length)
@@ -25,7 +25,13 @@ public class EnemyController : MonoBehaviour
                 i = 0;
             }
         }
-        transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
+        float newX = Mathf.MoveTowards(
+        transform.position.x,
+        points[i].position.x,
+        speed * Time.fixedDeltaTime
+        );
+
+        transform.position = new Vector2(newX, transform.position.y);
 
         sprite.flipX = (transform.position.x - points[i].position.x) < 0f;
     }
