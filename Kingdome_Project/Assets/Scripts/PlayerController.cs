@@ -187,6 +187,8 @@ public class PlayerController : MonoBehaviour
     {
         if (isHurt) return;
 
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
+
         if (isGrounded && !isJumping)
         {
             animator.SetBool("isGround", true);
@@ -199,6 +201,7 @@ public class PlayerController : MonoBehaviour
             if (rb.linearVelocityY > 0)
             {
                 animator.SetBool("isLeviation", true);
+                animator.SetBool("isFall", false);
             }
             else
             {

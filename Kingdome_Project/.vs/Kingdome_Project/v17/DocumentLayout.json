@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|d:\\development\\github\\pru_project_kingdome\\kingdome_project\\assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|d:\\development\\github\\pru_project_kingdome\\kingdome_project\\assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "EnemyController.cs",
               "DocumentMoniker": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\EnemyController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\EnemyController.cs",
               "ToolTip": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\EnemyController.cs",
               "RelativeToolTip": "Assets\\Scripts\\EnemyController.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAYwFUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGoAAAAAAAAAAAA0wCMAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-06T03:03:38.101Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
               "ToolTip": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAqwHsAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMsAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T18:53:25.15Z",
               "EditorCaption": ""
