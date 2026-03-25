@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
 
+    private bool isHurt = false;
+
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private Animator animator;
@@ -113,36 +115,45 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isInvincible) return;
-        if (collision.gameObject.CompareTag("Damage"))
-        {
-            health -= 1;
-            // Fix: was rb.linearVelocity.y instead of .x
-            float knockDir = transform.position.x < collision.transform.position.x ? -1f : 1f;
-            rb.linearVelocity = new Vector2(knockDir * knockbackForce, jump * 0.5f);
-            StartCoroutine(BlinkRed());
-            animator.SetTrigger("Hurt");
-        }
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Damage") || collision.gameObject.CompareTag("Enemy"))
         {
-            health -= 1; // © was missing
             float knockDir = transform.position.x < collision.transform.position.x ? -1f : 1f;
-            rb.linearVelocity = new Vector2(knockDir * knockbackForce, jump * 0.5f); // © proper knockback
-            StartCoroutine(BlinkRed());
-            animator.SetTrigger("Hurt");
+            TakeHit(knockDir);
         }
+    }
+
+    private IEnumerator HurtRoutine()
+    {
+        // Set all flags together
+        isInvincible = true;
+        isHurt = true;
+
+        animator.SetTrigger("Hurt");
+
+        // Blink red
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white;
+
+        // Wait remaining hurt duration
+        yield return new WaitForSeconds(invincibleDuration - 0.1f);
+
+        // Clear all flags together
+        isHurt = false;
+        isInvincible = false;
+    }
+
+    public void TakeHit(float knockDir)
+    {
+        if (isInvincible) return;
+
+        health -= 1;
+        rb.linearVelocity = new Vector2(knockDir * knockbackForce, jump * 0.5f);
+        StartCoroutine(HurtRoutine());
 
         if (health <= 0)
             Die();
-    }
-
-    private IEnumerator BlinkRed()
-    {
-        isInvincible = true; // © start invincibility
-        spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(invincibleDuration); // © covers blink + iframes
-        spriteRenderer.color = Color.white;
-        isInvincible = false; // © end invincibility
     }
 
     private void Die()
@@ -174,6 +185,8 @@ public class PlayerController : MonoBehaviour
 
     private void SetAnimation()
     {
+        if (isHurt) return;
+
         if (isGrounded && !isJumping)
         {
             animator.SetBool("isGround", true);
