@@ -1,12 +1,18 @@
+# Unity
 [Ll]ibrary/
 [Tt]emp/
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
 UserSettings/
-Obj/
 
-*.csproj
-*.unityproj
-*.sln
+# Visual Studio
+.vs/
+obj/
+Obj/
 *.user
+*.suo
+*.log
+
+# Optional
+*.tmp
