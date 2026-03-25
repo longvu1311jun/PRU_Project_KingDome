@@ -1,22 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\",
+  "WorkspaceRootPath": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|c:\\users\\lo pc\\documents\\github\\pru_project_kingdome\\kingdome_project\\assets\\scripts\\backtomainm2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\backtomainm2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|d:\\development\\github\\pru_project_kingdome\\kingdome_project\\assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|c:\\users\\lo pc\\documents\\github\\pru_project_kingdome\\kingdome_project\\assets\\scripts\\waterbulletmap2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\waterbulletmap2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\assets\\scripts\\playercontrolmap2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontrolmap2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\assets\\scripts\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8B2BEF9-D150-8B0E-7325-49555C6F99C0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,52 +23,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BackToMainM2.cs",
-              "DocumentMoniker": "C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\BackToMainM2.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\BackToMainM2.cs",
-              "ToolTip": "C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\BackToMainM2.cs",
-              "RelativeToolTip": "Assets\\Scripts\\BackToMainM2.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Title": "EnemyController.cs",
+              "DocumentMoniker": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\EnemyController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\EnemyController.cs",
+              "ToolTip": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\EnemyController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\EnemyController.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAYwIUAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T03:25:08.969Z",
+              "WhenOpened": "2026-03-06T03:03:38.101Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "WaterBulletMap2.cs",
-              "DocumentMoniker": "C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\WaterBulletMap2.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\WaterBulletMap2.cs",
-              "ToolTip": "C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\WaterBulletMap2.cs",
-              "RelativeToolTip": "Assets\\Scripts\\WaterBulletMap2.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
+              "ToolTip": "D:\\Development\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAYwJEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T02:16:36.871Z",
+              "WhenOpened": "2026-03-05T18:53:25.15Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PlayerControlMap2.cs",
-              "DocumentMoniker": "C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\PlayerControlMap2.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerControlMap2.cs",
-              "ToolTip": "C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\PlayerControlMap2.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerControlMap2.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAowA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T18:55:26.341Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CameraFollow.cs",
-              "DocumentMoniker": "C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\CameraFollow.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\CameraFollow.cs",
-              "ToolTip": "C:\\Users\\lo pc\\Documents\\GitHub\\PRU_Project_KingDome\\Kingdome_Project\\Assets\\Scripts\\CameraFollow.cs",
-              "RelativeToolTip": "Assets\\Scripts\\CameraFollow.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-05T17:43:41.661Z"
             }
           ]
         }
