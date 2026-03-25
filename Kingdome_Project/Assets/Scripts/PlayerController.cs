@@ -12,8 +12,17 @@ public class PlayerController : MonoBehaviour
     [Header("Jumping")]
     public float jump = 10f;
 
+    [Header("Jump Delay")]
+    public float jumpDelay = 0.2f;
+    private bool isJumping;
+
     [Header("Health")]
     public int health = 3;
+
+    [Header("Knockback")]
+    public float knockbackForce = 5f;
+    public float invincibleDuration = 0.5f;
+    private bool isInvincible = false;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -81,26 +90,46 @@ public class PlayerController : MonoBehaviour
 
     void OnJump()
     {
-        if (isGrounded)
+        if (isGrounded && !isJumping)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump);
+            StartCoroutine(JumpWithDelay());
         }
+    }
+
+    IEnumerator JumpWithDelay()
+    {
+        isJumping = true;
+
+        animator.ResetTrigger("Jump");
+        animator.SetTrigger("Jump");
+
+        yield return new WaitForSeconds(jumpDelay);
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump);
+
+        isJumping = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isInvincible) return;
         if (collision.gameObject.CompareTag("Damage"))
         {
             health -= 1;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jump);
+            // Fix: was rb.linearVelocity.y instead of .x
+            float knockDir = transform.position.x < collision.transform.position.x ? -1f : 1f;
+            rb.linearVelocity = new Vector2(knockDir * knockbackForce, jump * 0.5f);
             StartCoroutine(BlinkRed());
+            animator.SetTrigger("Hurt");
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            //Not Tested
-            rb.linearVelocity = new Vector2(rb.linearVelocity.y, -2f);
+            health -= 1; // © was missing
+            float knockDir = transform.position.x < collision.transform.position.x ? -1f : 1f;
+            rb.linearVelocity = new Vector2(knockDir * knockbackForce, jump * 0.5f); // © proper knockback
             StartCoroutine(BlinkRed());
+            animator.SetTrigger("Hurt");
         }
 
         if (health <= 0)
@@ -109,9 +138,11 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator BlinkRed()
     {
+        isInvincible = true; // © start invincibility
         spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(invincibleDuration); // © covers blink + iframes
         spriteRenderer.color = Color.white;
+        isInvincible = false; // © end invincibility
     }
 
     private void Die()
@@ -143,20 +174,23 @@ public class PlayerController : MonoBehaviour
 
     private void SetAnimation()
     {
-        if (isGrounded)
+        if (isGrounded && !isJumping)
         {
-            if (movementX == 0) animator.Play("Player_Idle");
-            else animator.Play("Player_Run");
+            animator.SetBool("isGround", true);
+            animator.SetBool("isLeviation", false);
+            animator.SetBool("isFall", false);
         }
         else
         {
+            animator.SetBool("isGround", false);
             if (rb.linearVelocityY > 0)
             {
-                animator.Play("Player_Jump");
+                animator.SetBool("isLeviation", true);
             }
             else
             {
-                animator.Play("Player_Fall");
+                animator.SetBool("isLeviation", false);
+                animator.SetBool("isFall", true);
             }
         }
     }

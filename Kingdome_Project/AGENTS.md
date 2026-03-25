@@ -2,7 +2,7 @@
 - Project name: Kingdome_Project
 - Unity version: Unity 6000.3.10f1
 - Active game object:
-  - Name: HeavyBandit
-  - Tag: Enemy
-  - Layer: Default
+  - Name: Player
+  - Tag: Player
+  - Layer: Player
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
