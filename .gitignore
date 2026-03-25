@@ -10,3 +10,9 @@ Obj/
 *.unityproj
 *.sln
 *.user
+
+/[Vv]s/
+*.suo
+*.user
+*.userosscache
+*.sln.doccache
