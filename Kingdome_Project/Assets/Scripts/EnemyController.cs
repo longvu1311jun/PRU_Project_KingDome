@@ -84,7 +84,6 @@ public class EnemyController : MonoBehaviour
 
         animator.SetTrigger("Attack");
 
-        // Find actual direction toward player
         Vector2 origin = (Vector2)transform.position;
 
         RaycastHit2D hitLeft = Physics2D.BoxCast(origin, attackBoxSize, 0f, Vector2.left, attackRange, playerLayer);
@@ -98,14 +97,9 @@ public class EnemyController : MonoBehaviour
             PlayerController player = validHit.collider.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.health -= 1;
-
-                Rigidbody2D playerRb = validHit.collider.GetComponent<Rigidbody2D>();
-                if (playerRb != null)
-                {
-                    Vector2 knockback = new Vector2(direction * 3f, 2f);
-                    playerRb.linearVelocity = knockback;
-                }
+                // Call TakeHit on player directly instead of relying on collision
+                float knockDir = player.transform.position.x < transform.position.x ? -1f : 1f;
+                player.TakeHit(knockDir);
             }
         }
     }
