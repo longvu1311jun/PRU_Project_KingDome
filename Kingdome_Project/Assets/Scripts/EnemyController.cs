@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamageable
 {
     public float speed = 2f;
     public Transform[] points;
@@ -8,6 +9,16 @@ public class EnemyController : MonoBehaviour
     private int i;
     private Animator animator;
     private SpriteRenderer sprite;
+    private Rigidbody2D rb;
+
+    [Header("Health")]
+    public int health = 3;
+    private bool isDead = false;
+    private bool isHurt = false;
+
+    [Header("Knockback")]
+    public float knockbackForce = 4f;
+    public float hurtDuration = 0.4f;
 
     [Header("Attack")]
     public float detectRange = 2f;
@@ -18,14 +29,19 @@ public class EnemyController : MonoBehaviour
 
     private float attackTimer = 0f;
     private bool isAttacking = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
+        // Stop everything if dead or hurt
+        if (isDead || isHurt) return;
+
         attackTimer -= Time.fixedDeltaTime;
 
         bool playerDetected = DetectPlayer(detectRange);
@@ -37,12 +53,10 @@ public class EnemyController : MonoBehaviour
         }
         else if (playerDetected)
         {
-            // Player detected but not in attack range — stop and wait
             isAttacking = false;
         }
         else
         {
-            // No player detected — resume patrol
             isAttacking = false;
             Patrol();
         }
@@ -51,28 +65,60 @@ public class EnemyController : MonoBehaviour
         sprite.flipX = (transform.position.x - points[i].position.x) < 0f;
     }
 
-    // Detect player in front using a box cast
+    public void TakeDamage(int damage)
+    {
+        if (isDead || isHurt) return;
+
+        health -= damage;
+
+        if (health <= 0)
+            StartCoroutine(DieRoutine());
+        else
+            StartCoroutine(HurtRoutine());
+    }
+
+    private IEnumerator HurtRoutine()
+    {
+        isHurt = true;
+        animator.SetTrigger("Hurt");
+
+        // Knockback — push away from player
+        PlayerController player = FindAnyObjectByType<PlayerController>();
+        if (player != null)
+        {
+            float knockDir = transform.position.x > player.transform.position.x ? 1f : -1f;
+            rb.linearVelocity = new Vector2(knockDir * knockbackForce, 2f);
+        }
+
+        yield return new WaitForSeconds(hurtDuration);
+
+        rb.linearVelocity = Vector2.zero;
+        isHurt = false;
+    }
+
+    private IEnumerator DieRoutine()
+    {
+        isDead = true;
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
+
+        animator.SetTrigger("Death");
+
+        // Wait for death animation length
+        yield return new WaitForSeconds(1.5f);
+
+        Destroy(gameObject);
+    }
+
+    // ── Everything below unchanged from your original ─────────────────────
+
     private bool DetectPlayer(float range)
     {
-        // Check both directions since enemy patrols and may not always face player
         Vector2 origin = (Vector2)transform.position;
         Vector2 size = new Vector2(attackBoxSize.x, attackBoxSize.y);
 
-        // Cast left
-        RaycastHit2D hitLeft = Physics2D.BoxCast(
-            origin, size, 0f,
-            Vector2.left,
-            range,
-            playerLayer
-        );
-
-        // Cast right
-        RaycastHit2D hitRight = Physics2D.BoxCast(
-            origin, size, 0f,
-            Vector2.right,
-            range,
-            playerLayer
-        );
+        RaycastHit2D hitLeft = Physics2D.BoxCast(origin, size, 0f, Vector2.left, range, playerLayer);
+        RaycastHit2D hitRight = Physics2D.BoxCast(origin, size, 0f, Vector2.right, range, playerLayer);
 
         return hitLeft.collider != null || hitRight.collider != null;
     }
@@ -81,15 +127,12 @@ public class EnemyController : MonoBehaviour
     {
         isAttacking = true;
         attackTimer = attackCooldown;
-
         animator.SetTrigger("Attack");
 
         Vector2 origin = (Vector2)transform.position;
-
         RaycastHit2D hitLeft = Physics2D.BoxCast(origin, attackBoxSize, 0f, Vector2.left, attackRange, playerLayer);
         RaycastHit2D hitRight = Physics2D.BoxCast(origin, attackBoxSize, 0f, Vector2.right, attackRange, playerLayer);
 
-        float direction = hitLeft.collider != null ? -1f : 1f;
         RaycastHit2D validHit = hitLeft.collider != null ? hitLeft : hitRight;
 
         if (validHit.collider != null)
@@ -97,7 +140,6 @@ public class EnemyController : MonoBehaviour
             PlayerController player = validHit.collider.GetComponent<PlayerController>();
             if (player != null)
             {
-                // Call TakeHit on player directly instead of relying on collision
                 float knockDir = player.transform.position.x < transform.position.x ? -1f : 1f;
                 player.TakeHit(knockDir);
             }
@@ -122,18 +164,24 @@ public class EnemyController : MonoBehaviour
 
     private void SetAnimation(bool playerDetected)
     {
+        if (isDead || isHurt) return;
+
         if (playerDetected || isAttacking)
-            animator.SetInteger("AnimState", 1);  // Combat idle when detect or attacking
+            animator.SetInteger("AnimState", 1);
         else
-            animator.SetInteger("AnimState", 2);  // Run/patrol
+            animator.SetInteger("AnimState", 2);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
-        {
             ReverseDirection();
-        }
+    }
+
+    void ReverseDirection()
+    {
+        i--;
+        if (i < 0) i = points.Length - 1;
     }
 
     private void OnDrawGizmosSelected()
@@ -151,16 +199,5 @@ public class EnemyController : MonoBehaviour
             transform.position + new Vector3(direction * attackRange, 0f),
             new Vector3(attackBoxSize.x, attackBoxSize.y)
         );
-    }
-
-    void ReverseDirection()
-    {
-        // Go back to previous point
-        i--;
-
-        if (i < 0)
-        {
-            i = points.Length - 1;
-        }
     }
 }

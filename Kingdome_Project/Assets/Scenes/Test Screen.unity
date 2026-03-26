@@ -692,14 +692,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1438335334774493982, guid: e212aad4ce3946148ae7dbec18565fa7, type: 3}
-      propertyPath: detectRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1438335334774493982, guid: e212aad4ce3946148ae7dbec18565fa7, type: 3}
-      propertyPath: playerLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 1750049837932231058, guid: e212aad4ce3946148ae7dbec18565fa7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.30905
@@ -757,21 +749,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 205175280369610901, guid: d9f1cb966fe00a0459ba7e9cb742d902, type: 3}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6063482174445362634, guid: d9f1cb966fe00a0459ba7e9cb742d902, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6063482174445362634, guid: d9f1cb966fe00a0459ba7e9cb742d902, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6583382237997049749, guid: d9f1cb966fe00a0459ba7e9cb742d902, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6583382237997049749, guid: d9f1cb966fe00a0459ba7e9cb742d902, type: 3}
       propertyPath: m_LocalPosition.x
@@ -812,18 +792,6 @@ PrefabInstance:
     - target: {fileID: 6583382237997049749, guid: d9f1cb966fe00a0459ba7e9cb742d902, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6900214310194607278, guid: d9f1cb966fe00a0459ba7e9cb742d902, type: 3}
-      propertyPath: m_Size.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6900214310194607278, guid: d9f1cb966fe00a0459ba7e9cb742d902, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 7986617963125216962, guid: d9f1cb966fe00a0459ba7e9cb742d902, type: 3}
-      propertyPath: jumpDelay
-      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

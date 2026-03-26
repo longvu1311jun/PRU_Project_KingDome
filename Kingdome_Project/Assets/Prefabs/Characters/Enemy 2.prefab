@@ -109,6 +109,10 @@ PrefabInstance:
       value: LightBandit
       objectReference: {fileID: 0}
     - target: {fileID: 1689866831511430, guid: 2e2183501755a214591e802f3aff33d2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689866831511430, guid: 2e2183501755a214591e802f3aff33d2, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -188,3 +192,13 @@ MonoBehaviour:
   points:
   - {fileID: 2544041264860878585}
   - {fileID: 1978196493476750776}
+  health: 3
+  knockbackForce: 4
+  hurtDuration: 0.4
+  detectRange: 2
+  attackRange: 1
+  attackCooldown: 1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  attackBoxSize: {x: 1, y: 1}
