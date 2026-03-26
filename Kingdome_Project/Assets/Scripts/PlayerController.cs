@@ -19,6 +19,21 @@ public class PlayerController : MonoBehaviour
     [Header("Health")]
     public int health = 3;
 
+    [Header("Attack")]
+    public float attackRange = 1f;
+    public int attackDamage = 10;
+    public float attackCooldown = 0.4f;
+    public Transform attackPoint;       // empty child at fist/weapon tip
+    public LayerMask enemyLayer;
+
+    [Header("Hit Effect")]
+    public GameObject swingEffectPrefab;
+    public GameObject hitEffectPrefab;
+    public float hitEffectDuration = 0.5f;
+
+    private float _lastAttackTime = -99f;
+    private bool isAttacking = false;
+
     [Header("Knockback")]
     public float knockbackForce = 5f;
     public float invincibleDuration = 0.5f;
@@ -112,6 +127,70 @@ public class PlayerController : MonoBehaviour
         isJumping = false;
     }
 
+    void OnAttack()
+    {
+        Debug.Log("Attack called!");
+
+        if (Time.time < _lastAttackTime + attackCooldown) return;
+        if (isHurt) return;
+
+        _lastAttackTime = Time.time;
+        StartCoroutine(AttackRoutine());
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        isAttacking = true;
+
+        // Always spawn the swing slash visual
+        SpawnSwingEffect();
+
+        // Small delay so the animation wind-up plays before hit detection
+        yield return new WaitForSeconds(0.1f);
+
+        DetectHits();
+
+        yield return new WaitForSeconds(0.2f);
+        isAttacking = false;
+    }
+
+    private void SpawnSwingEffect()
+    {
+        if (swingEffectPrefab == null) return;
+        GameObject fx = Instantiate(
+            swingEffectPrefab,
+            attackPoint.position,
+            Quaternion.identity,
+            transform  // parent to player so it flips with them
+        );
+    }
+
+    private void DetectHits()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            attackPoint.position,
+            attackRange,
+            enemyLayer
+        );
+
+        foreach (Collider2D col in hits)
+        {
+            // Works with any enemy that has IDamageable
+            if (col.TryGetComponent<IDamageable>(out var target))
+                target.TakeDamage(attackDamage);
+
+            // Spawn hit effect at closest point on the collider
+            SpawnHitEffect(col.ClosestPoint(attackPoint.position));
+        }
+    }
+
+    private void SpawnHitEffect(Vector2 position)
+    {
+        if (hitEffectPrefab == null) return;
+        GameObject fx = Instantiate(hitEffectPrefab, position, Quaternion.identity);
+        Destroy(fx, hitEffectDuration);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isInvincible) return;
@@ -120,6 +199,23 @@ public class PlayerController : MonoBehaviour
         {
             float knockDir = transform.position.x < collision.transform.position.x ? -1f : 1f;
             TakeHit(knockDir);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Your existing ground check visual
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
+
+        // Attack range visual
+        if (attackPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         }
     }
 
@@ -187,6 +283,8 @@ public class PlayerController : MonoBehaviour
     {
         if (isHurt) return;
 
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
+
         if (isGrounded && !isJumping)
         {
             animator.SetBool("isGround", true);
@@ -199,6 +297,7 @@ public class PlayerController : MonoBehaviour
             if (rb.linearVelocityY > 0)
             {
                 animator.SetBool("isLeviation", true);
+                animator.SetBool("isFall", false);
             }
             else
             {

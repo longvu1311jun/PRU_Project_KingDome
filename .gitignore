@@ -1,18 +1,18 @@
+# Unity
 [Ll]ibrary/
 [Tt]emp/
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
 UserSettings/
+
+# Visual Studio
+.vs/
+obj/
 Obj/
-
-*.csproj
-*.unityproj
-*.sln
 *.user
-
-/[Vv]s/
 *.suo
-*.user
-*.userosscache
-*.sln.doccache
+*.log
+
+# Optional
+*.tmp
